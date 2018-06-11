@@ -17,7 +17,7 @@ module.exports = {
   ** Customize the progress bar color
   */
   plugins: [
-    { src: '~/plugins/iView', ssr: false }
+    { src: '~/plugins/iview', ssr: true }
   ],
   css: ['~assets/app.less'],
   loading: { color: '#3B8070' },
