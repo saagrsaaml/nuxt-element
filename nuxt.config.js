@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     { src: '~/plugins/iView', ssr: false }
   ],
+  css: ['~assets/app.less'],
   loading: { color: '#3B8070' },
   /*
   ** Build configuration
