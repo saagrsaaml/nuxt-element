@@ -28,15 +28,15 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
-      if (isDev && isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+    // iview-loader
+    extend (config) {
+      config.module.rules.push({
+        test: /\.vue$/,
+        loader: 'iview-loader',
+        options: {
+          prefix: false
+        }
+      })
     }
   }
 }

@@ -29,7 +29,6 @@
         综合设置
       </MenuItem>
     </Menu>
-    <Switch v-model="switch1" @on-change="change"></Switch>
   </div>
 </template>
 
@@ -37,7 +36,8 @@
   export default {
     data () {
     return {
-      switch1: false
+      switch1: true,
+      theme1: 'light'
     }
   },
   methods: {
