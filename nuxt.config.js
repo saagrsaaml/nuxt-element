@@ -16,6 +16,7 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
+  plugins: ['~plugins/iview'],
   loading: { color: '#3B8070' },
   /*
   ** Build configuration
