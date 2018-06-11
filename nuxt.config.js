@@ -34,7 +34,7 @@ module.exports = {
         test: /\.vue$/,
         loader: 'iview-loader',
         options: {
-          prefix: false
+          prefix: true
         }
       })
     }
