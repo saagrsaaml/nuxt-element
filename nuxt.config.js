@@ -28,6 +28,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
+    build: { vendor: ['iView'] },
     // iview-loader
     extend (config) {
       config.module.rules.push({
