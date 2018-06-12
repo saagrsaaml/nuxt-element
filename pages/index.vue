@@ -2,25 +2,32 @@
   <div class="layout">
     <Layout>
       <Header>
-        <Menu mode="horizontal" theme="dark" active-name="1">
-          <div class="layout-logo"></div>
-          <div class="layout-nav">
-            <MenuItem name="1">
-              <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '20px 20px 0'}" type="ios-navigate" size="24"></Icon>
-            </MenuItem>
-            <MenuItem name="2">
+        <Menu v-if="model11=='menu1'" mode="horizontal" active-name="1-2" theme="dark" width="auto" :open-names="['1']" :class="menuitemClasses">
+          <Submenu name="1">
+            <template slot="title">
+              <Icon type="ios-navigate"></Icon>
+              <span>Option 1</span>
+            </template>
+            <MenuItem name="1-1">Option 1</MenuItem>
+            <MenuItem name="1-2">Option 2</MenuItem>
+            <MenuItem name="1-3">Option 3</MenuItem>
+          </Submenu>
+          <Submenu name="2">
+            <template slot="title">
               <Icon type="ios-keypad"></Icon>
-              Item 2
-            </MenuItem>
-            <MenuItem name="3">
+              <span>Option 1</span>
+            </template>
+            <MenuItem name="2-1">Option 1</MenuItem>
+            <MenuItem name="2-2">Option 2</MenuItem>
+          </Submenu>
+          <Submenu name="3">
+            <template slot="title">
               <Icon type="ios-analytics"></Icon>
-              Item 3
-            </MenuItem>
-            <MenuItem name="4">
-              <Icon type="ios-paper"></Icon>
-              Item 4
-            </MenuItem>
-          </div>
+              <span>Option 1</span>
+            </template>
+            <MenuItem name="3-1">Option 1</MenuItem>
+            <MenuItem name="3-2">Option 2</MenuItem>
+          </Submenu>
         </Menu>
       </Header>
       <Layout>
@@ -60,10 +67,10 @@
             <BreadcrumbItem>Layout</BreadcrumbItem>
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '100vh', background: '#fff'}">
-            Content
+
           </Content>
         </Layout>
-        <Sider ref="side1" hide-trigger collapsible :collapsed-width="220" v-model="isCollapsed">
+        <Sider v-if="model11=='menu2'" ref="side1" hide-trigger collapsible :collapsed-width="220" v-model="isCollapsed">
           <Menu mode="vertical" active-name="1-2" theme="dark" width="auto" :open-names="['1']" :class="menuitemClasses">
             <Submenu name="1">
               <template slot="title">
@@ -94,6 +101,17 @@
         </Sider>
 
       </Layout>
+
+      <Row>
+        <Col span="12" style="padding-right:10px">
+
+          <Select v-model="model11" filterable >
+            <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+          </Select>{{model11}}
+        </Col>
+
+      </Row>
+
     </Layout>
   </div>
 </template>
@@ -102,7 +120,23 @@
   export default {
     data () {
       return {
-        isCollapsed: false
+        cityList: [
+          {
+            value: 'menu1',
+            label: 'New York'
+          },
+          {
+            value: 'menu2',
+            label: 'London'
+          },
+          {
+            value: 'menu3',
+            label: 'Sydney'
+          }
+        ],
+        model11: '',
+        isCollapsed: false,
+        switch1: false
       };
     },
     computed: {
