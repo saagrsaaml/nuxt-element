@@ -1,0 +1,67 @@
+1.vue init nuxt-community/starter-template <project-name>
+2.yarn add iview
+3.create iview.js plugin inside plugin/.
+
+import Vue from 'vue'
+import iView from 'iview'
+
+Vue.use(iView)
+
+4.Then, we add the file inside the plugins key of nuxt.config.js
+module.exports = {
+  plugins: ['~/plugins/iview']
+}
+---------or----------------
+module.exports = {
+  plugins: [
+	{ src: '~/plugins/iview', ssr: false }
+	]
+}
+Some plugins might work only for the browser, you can use the ssr: false option in plugins to run the file only on the client-side.
+
+5.Actually, iview will be included in the app bundle, but because it's a library, we want to include it in the vendor bundle for better caching and include iview only once in our application.
+
+We can update our nuxt.config.js to add iview in the vendor bundle:
+
+build: {
+    vendor: ['iView']
+  },
+
+6.create app.less inside assets/
+
+@import '~iview/src/styles/index.less';
+
+// Here are the variables to cover, such as:
+@primary-color: #8c0776;
+
+7.Then, we add the file inside the css key of nuxt.config.js
+module.exports = {
+	css: ['~assets/app.less']
+}
+
+7.yarn add less-loader less
+8.yarn add iview-loader
+Uniform iView tag writing specification, all tags can be used in the form of capital letters
+replace 
+extend (config, { isDev, isClient }) {
+      if (isDev && isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
+    }
+with
+extend (config) {
+      config.module.rules.push({
+        test: /\.vue$/,
+        loader: 'iview-loader',
+        options: {
+          prefix: false
+        }
+      })
+    }
+
+https://nuxtjs.org/guide/plugins/
