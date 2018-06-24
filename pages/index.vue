@@ -67,7 +67,7 @@
             <BreadcrumbItem>Layout</BreadcrumbItem>
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '100vh', background: '#fff'}">
-
+            <MediaTab :mediaItem="mediaItem"/>
           </Content>
         </Layout>
         <Sider v-if="model11=='menu2'" ref="side1" hide-trigger collapsible :collapsed-width="220" v-model="isCollapsed">
@@ -117,9 +117,18 @@
 </template>
 
 <script>
+  import MediaTab from '@@/components/common/media-tab'
   export default {
+    components: {
+      MediaTab
+    },
     data () {
       return {
+        mediaItem: [
+          { label: 'All', href: '', type: '', value: 'all', content: () => import('@@/components/common/media-list') },
+          { label: 'Images', icon:'images', href: '', type: 'image', value: 'images', content: () => import('@@/components/common/media-list') },
+          { label: 'Document', icon:'images', href: '', type: 'document', value: 'document', content: () => import('@@/components/common/media-list') }
+        ],
         cityList: [
           {
             value: 'menu1',
