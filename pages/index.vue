@@ -67,7 +67,7 @@
             <BreadcrumbItem>Layout</BreadcrumbItem>
           </Breadcrumb>
           <Content :style="{padding: '24px', minHeight: '100vh', background: '#fff'}">
-            <MediaTab :mediaItem="mediaItem"/>
+            <MediaTab :mediaTabs="mediaTabs"/>
           </Content>
         </Layout>
         <Sider v-if="model11=='menu2'" ref="side1" hide-trigger collapsible :collapsed-width="220" v-model="isCollapsed">
@@ -101,15 +101,14 @@
         </Sider>
 
       </Layout>
-
+      {{ getMedia }}
       <Row>
         <Col span="12" style="padding-right:10px">
 
           <Select v-model="model11" filterable >
             <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
-          </Select>{{model11}}
+          </Select>
         </Col>
-
       </Row>
 
     </Layout>
@@ -124,8 +123,9 @@
     },
     data () {
       return {
-        mediaItem: [
-          { label: 'All', href: '', type: '', value: 'all', content: () => import('@@/components/common/media-list') },
+        mediaList: [],
+        mediaTabs: [
+          { label: 'All', href: '', type: '', value: 'all', content: () => import('@@/components/common/media-list'), media: this.getMedia },
           { label: 'Images', icon:'images', href: '', type: 'image', value: 'images', content: () => import('@@/components/common/media-list') },
           { label: 'Document', icon:'images', href: '', type: 'document', value: 'document', content: () => import('@@/components/common/media-list') }
         ],
@@ -148,7 +148,20 @@
         switch1: false
       };
     },
+    created(){
+      this.mediaList = [
+        {
+          src: 'logo3.png',
+          title: 'logo'
+        }
+      ]
+      // TODO @sagar need to pass mediaList from mediaTabs
+      this.mediaTabs[0].media = this.mediaList
+    },
     computed: {
+      getMedia() {
+        return this.mediaList
+      },
       rotateIcon () {
         return [
           'menu-icon',

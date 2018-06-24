@@ -1,15 +1,23 @@
 <template>
-  <Card style="width:320px">
-    <div style="text-align:center">
-      <img src="favicon.ico">
-      <h3>A high quality UI Toolkit based on Vue.js</h3>
-    </div>
-  </Card>
+  <Row :gutter="16">
+    <template v-for="md in media">
+      <Col span="3">
+        <Tooltip placement="top" :content="md.title">
+          <Card style="width:100%">
+            <div style="text-align:center">
+              <img :src="md.src" style="width: 100%">
+            </div>
+          </Card>
+        </Tooltip>
+      </Col>
+    </template>
+  </Row>
 </template>
 
 <script>
   export default {
-      name: "media-list"
+    name: "media-list",
+    props: ['media']
   }
 </script>
 

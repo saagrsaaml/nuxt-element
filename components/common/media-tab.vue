@@ -1,14 +1,14 @@
 <template>
   <Tabs>
-    <template v-for="item in mediaItem">
+    <template v-for="item in mediaTabs">
       <TabPane v-if="item.icon" :label="item.label" :icon="item.icon">
         <keep-alive>
-          <component v-bind:is="item.content"></component>
+          <component v-bind:is="item.content" :media="item.media"></component>
         </keep-alive>
       </TabPane>
       <TabPane v-else :label="item.label">
         <keep-alive>
-          <component v-bind:is="item.content"></component>
+          <component v-bind:is="item.content" :media="item.media"></component>
         </keep-alive>
       </TabPane>
     </template>
@@ -18,7 +18,7 @@
 <script>
   export default {
     name: "media-tab",
-    props: ['mediaItem']
+    props: ['mediaTabs']
   }
 </script>
 
